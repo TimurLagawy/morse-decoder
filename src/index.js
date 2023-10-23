@@ -49,17 +49,28 @@ function decode(expr) {
     letter += expr[i * 10 + 4];
     letter += expr[i * 10 + 5];
     letter += expr[i * 10 + 6];
-    letter += expr[i + 7];
-    letter += expr[i + 8];
-    letter += expr[i + 9];
-    for (let j = 0; j < 5; j++) {
-      let key = "";
-    }
-
+    letter += expr[i * 10 + 7];
+    letter += expr[i * 10 + 8];
+    letter += expr[i * 10 + 9];
     if (letter === "**********") {
       res += " ";
+    } else {
+      let key = "";
+      let a = "";
+      for (let j = 0; j < 5; j++) {
+        if (letter[i * 2] == "0" && letter[i * 2 + 1] == "0") {
+          key += "";
+        } else if (letter[i] == "1" && letter[i + 1] == "0") {
+          key += ".";
+        } else if (letter[i] == "1" && letter[i + 1] == "1") {
+          key += "-";
+        }
+      }
     }
+
+    res += MORSE_TABLE[key];
   }
+  return res;
 }
 
 module.exports = {
