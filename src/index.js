@@ -58,21 +58,17 @@ function decode(expr) {
       let key = "";
       let a = "";
       for (let j = 0; j < 5; j++) {
-        if (letter[i * 2] == "0" && letter[i * 2 + 1] == "0") {
+        if (letter[j * 2] === "0" && letter[j * 2 + 1] === "0") {
           key += "";
-        } else if (letter[i] == "1" && letter[i + 1] == "0") {
+        } else if (letter[j * 2] === "1" && letter[j * 2 + 1] === "0") {
           key += ".";
-        } else if (letter[i] == "1" && letter[i + 1] == "1") {
+        } else if (letter[j * 2] === "1" && letter[j * 2 + 1] === "1") {
           key += "-";
         }
       }
+      res += MORSE_TABLE[key];
     }
-
-    res += MORSE_TABLE[key];
   }
   return res;
 }
-
-module.exports = {
-  decode,
-};
+module.exports = { decode };
